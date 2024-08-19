@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-//Su responsabilidad es recibir peticiones
+//Su responsabilidad es recibir peticiones, prueba
 @RestController
 @RequestMapping("/personas")
 @RequiredArgsConstructor
@@ -60,6 +60,16 @@ public class PersonaController {
                 .map(personaEntity -> personaMapper.personaDtoToPersonaEntity(personaEntity))
                 .collect(Collectors.toList());
     }
+
+    @GetMapping("/nombre")
+    private List<PersonaDto> obtenerPersonaNombre(){
+        return personaRepository
+                .findAll()
+                .stream()
+                .map(personaEntity -> personaMapper.personaDtoToPersonaEntity(personaEntity))
+                .collect(Collectors.toList());
+    }
+
     @PostMapping
     private PersonaDto crearPersona(@RequestBody PersonaDto persona){
         //personaRepository.crearPersona(persona);
